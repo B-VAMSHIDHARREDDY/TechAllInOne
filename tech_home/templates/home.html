@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="text-center">Welcome toTechAllInOne</h1>
+<p>This is the home page of the TechAllInOne project.</p>
+{% if user.is_authenticated %}
+<p>Hello, {{ user.username }}. You are logged in.</p>
+{% else %}
+<p>You are not logged in. Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">signup</a> to access more features.</p>
+{% endif %}
+
+  </div>
+{% endblock %}
