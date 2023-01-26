@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
 <!--<h2>Login</h2>-->
 <!--  <form method="post" class="form-group">-->
@@ -10,7 +10,13 @@
 <!--    <input type="password" name="password" id="password" class="form-control">-->
 <!--    <input type="submit" value="Login" class="btn btn-primary">-->
 <!--  </form>-->
+<html>
+  <head>
+    <link rel="stylesheet" href="{% static 'static/CSS/log.css' %}">
+  </head>
+
 <section class="h-100 gradient-form" style="background-color: #eee;">
+
   <div class="container py-5 h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-xl-10">
@@ -79,5 +85,6 @@
     </div>
   </div>
 </section>
+</html>
 
 {% endblock %}
