@@ -1,26 +1,120 @@
+<!-- templates/registration/login.html -->
+
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
- <h2>Signup</h2>
-  <body>
-  <form method="post" class="form-group">
-    {% csrf_token %}
 
-    <div class="form-group">
-        {{ form.username.label_tag }}
-        {{ form.username }}
-    </div>
-    <div class="form-group">
-        {{ form.password1.label_tag }}
-        {{ form.password1 }}
-    </div>
-    <div class="form-group">
-        {{ form.password2.label_tag }}
-        {{ form.password2 }}
-    </div>
-    <input type="submit" value="Signup" class="btn btn-primary">
-  </form>
-  </body>
 
+        <li class="nav-item">
+            <a class="nav-link " href="/about_us">About Us</a>
+        </li>
+
+        <li class="nav-item">
+            <a class="nav-link " href="/know_more">Know More</a>
+        </li>
 {% endblock %}
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="{% static 'css/login.css' %}" media="screen">
+
+
+
+
+
+
+
+<script type="text/javascript" src="{% static 'js/field_validator.js' %}" ></script>
+
+<div class="container">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <ul class="nav nav-pills nav-fill mb-1" id="pills-tab" role="tablist"     style="background: aliceblue">
+      <li class="nav-item"> <a class="nav-link " id="pills-signin-tab" data-toggle="pill" href="#pills-signin" role="tab" aria-controls="pills-signin" aria-selected="false"  onclick="javascript:window.location.href='/users/login/'">Login</a> </li>
+      <li class="nav-item"> <a class="nav-link active" id="pills-signup-tab" data-toggle="pill" href="#pills-signup" role="tab" aria-controls="pills-signup" aria-selected="true" onclick="javascript:window.location.href='/users/sign_up/'">Sign Up</a> </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+            <div class="card card-signin my-4 tab-pane fade show active" id="pills-signup" role="tabpanel" aria-labelledby="pills-signup-tab">
+                <div class="card-body">
+                    <h5 class="card-title text-center ">Developer Sign Up</h5>
+
+                    <form class="form-signin" method="POST">
+                        {% csrf_token %}
+
+                        {% for non_field_error in form.non_field_errors %}
+                            <p class="errorlist">{{ non_field_error }}</p>
+                            {% endfor %}
+                            <div class="form-group">
+                                {{ form.full_name.label_tag }}
+                                {{ form.full_name }}
+                                {% if form.full_name.help_text %}
+                                    <small class="form-text text-muted">{{ form.full_name.help_text }}</small>
+                                {% endif %}
+                                 <p class="errorlist" id="full_name_error"></p>
+                                {% for error in form.full_name.errors %}
+                                    <p class="errorlist">{{ error }} </p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="form-group">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                                {% if form.email.help_text %}
+                                    <small class="form-text text-muted" >{{ form.email.help_text }}</small>
+                                {% endif %}
+                                <p class="errorlist" id="email_error"></p>
+                                {% for error in form.email.errors %}
+                                    <p class="errorlist">{{ error }} </p>
+                                {% endfor %}
+                            </div>
+
+
+                            <div class="form-group">
+                                {{ form.password1.label_tag }}
+                                {{ form.password1 }}
+                                {% if form.password1.help_text %}
+                                    <small class="form-text text-muted">{{ form.password1.help_text }}</small>
+                                {% endif %}
+                                <p class="errorlist" id="password1_error"></p>
+                                {% for error in form.password1.errors %}
+                                    <p class="errorlist">{{ error }} </p>
+                                {% endfor %}
+                            </div>
+                             <div class="form-group">
+                                {{ form.password2.label_tag }}
+                                {{ form.password2 }}
+                                {% if form.password2.help_text %}
+                                    <small class="form-text text-muted">{{ form.password2.help_text }}</small>
+                                {% endif %}
+                                 <p class="errorlist" id="password2_error"></p>
+                                {% for error in form.password2.errors %}
+                                    <p class="errorlist">{{ error }} </p>
+                                {% endfor %}
+                            </div>
+
+
+
+
+
+                        <button  class="btn btn-lg btn-primary btn-block text-uppercase" id="signup_button" type="submit" >Register</button>
+
+                        <div class="social_login_label"><span class="label-text">or connect with</span></div>
+                        <div style="text-align:center;">
+                            <a class="fa fa-github social_login_button" href="{% url 'social:begin' 'github' %}"></a>
+
+                            <a class="fa fa-facebook social_login_button" href="{% url 'social:begin' 'facebook' %}"></a>
+
+                            <a class="fa fa-linkedin social_login_button" href="{% url 'social:begin' 'linkedin-oauth2' %}"></a>
+
+                            <a class="fa fa-google social_login_button" href="{% url 'social:begin' 'google-oauth2' %}"></a>
+
+                            </div>
+                    </form>
+                </div>
+
+            </div>
+      </div>
+    </div>
+  </div>
 
